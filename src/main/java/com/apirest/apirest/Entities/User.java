@@ -24,6 +24,9 @@ public class User {
    @OneToMany(mappedBy = "createdBy")
    private List<Module> createdModules;
 
+   @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL, orphanRemoval = true)
+   private List<Language> createdLanguages;
+
 
    public Long getId() {
       return id;
@@ -63,5 +66,13 @@ public class User {
 
    public void setCreatedModules(List<Module> createdModules) {
       this.createdModules = createdModules;
+   }
+
+   public List<Language> getCreatedLanguages() {
+      return createdLanguages;
+   }
+
+   public void setCreatedLanguages(List<Language> createdLanguages) {
+      this.createdLanguages = createdLanguages;
    }
 }
