@@ -1,11 +1,8 @@
 package com.apirest.apirest.Entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -20,6 +17,13 @@ public class User {
 
    @Column(nullable = false, unique = true)
    private String email;
+
+   @Column(nullable = false )
+   private  Integer roleUser;
+
+   @OneToMany(mappedBy = "createdBy")
+   private List<Module> createdModules;
+
 
    public Long getId() {
       return id;
@@ -43,5 +47,21 @@ public class User {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   public Integer getRoleUser() {
+      return roleUser;
+   }
+
+   public void setRoleUser(Integer roleUser) {
+      this.roleUser = roleUser;
+   }
+
+   public List<Module> getCreatedModules() {
+      return createdModules;
+   }
+
+   public void setCreatedModules(List<Module> createdModules) {
+      this.createdModules = createdModules;
    }
 }
