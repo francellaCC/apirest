@@ -1,6 +1,9 @@
 package com.apirest.apirest.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "modules")
@@ -18,12 +21,13 @@ public class Module {
     private Integer order;
     //Relacion con Language
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lenguage_id", nullable = false)
+    @JoinColumn(name = "language_id", nullable = false)
     private Language language;
 
     //Relacion con el usario creador (admin)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "create_by", nullable = false)
+    @JsonBackReference(value = "user-modules")
     private  User createdBy;
 
     public Long getId() {

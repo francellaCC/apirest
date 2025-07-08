@@ -1,5 +1,6 @@
 package com.apirest.apirest.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -22,9 +23,11 @@ public class User {
    private  Integer roleUser;
 
    @OneToMany(mappedBy = "createdBy")
+   @JsonManagedReference(value = "user-modules")
    private List<Module> createdModules;
 
    @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL, orphanRemoval = true)
+   @JsonManagedReference(value = "user-languages")
    private List<Language> createdLanguages;
 
 

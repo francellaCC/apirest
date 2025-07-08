@@ -1,7 +1,9 @@
 package com.apirest.apirest.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-
+import com.apirest.apirest.Entities.Module;
 import java.util.List;
 
 @Entity
@@ -23,6 +25,7 @@ public class Language {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by", nullable = false)
+    @JsonBackReference(value = "user-languages")
     private User createdBy;
 
     public Long getId() {
